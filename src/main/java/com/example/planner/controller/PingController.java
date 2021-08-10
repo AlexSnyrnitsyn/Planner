@@ -1,4 +1,4 @@
-package com.planner.controller;
+package com.example.planner.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
