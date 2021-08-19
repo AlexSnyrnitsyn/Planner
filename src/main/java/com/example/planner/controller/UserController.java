@@ -23,8 +23,8 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers(){
 
-        List<User> user = userService.getAllUsers();
+        List<User> users = this.userService.getAllUsers();
 
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 }

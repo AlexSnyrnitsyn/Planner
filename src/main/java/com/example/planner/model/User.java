@@ -1,17 +1,26 @@
 package com.example.planner.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user", schema = "public")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "login")
     private String login;
 
-    public User (Long id, String firstName, String lastName, String login){
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
+    public User (){
+
     }
 
     public Long getId(){
@@ -44,20 +53,5 @@ public class User {
 
     public void setLogin(String login){
         this.login = login;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }
