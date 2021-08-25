@@ -15,10 +15,10 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
 
-//    @Override
-//    public User getById(Long id) {
-//        return userRepository.findById(id);
-//    }
+    @Override
+    public User getById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 
     @Override
     public void createUser(UserCreateDto newUser) {

@@ -51,11 +51,11 @@ public class UserController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<UserCreateDto> deleteUser(@PathVariable Long id){
-//        User user = this.userService.getById(id);
+        User user = this.userService.getById(id);
 
-//        if(user == null){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
         this.userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
