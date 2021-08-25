@@ -23,6 +23,13 @@ public class User {
 
     }
 
+    public User (Long id, String firstName, String lastName, String login) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+    }
+
     public Long getId(){
         return id;
     }
