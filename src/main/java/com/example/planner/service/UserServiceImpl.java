@@ -1,6 +1,6 @@
 package com.example.planner.service;
 
-import com.example.planner.dto.UserCreateDto;
+import com.example.planner.dto.UserDto;
 import com.example.planner.model.User;
 import com.example.planner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserCreateDto newUser) {
+    public void createUser(UserDto newUser) {
         User user = new User(newUser.getId(), newUser.getFirstName(), newUser.getLastName(), newUser.getLogin());
         userRepository.save(user);
 
     }
 
     @Override
-    public void updateUser(UserCreateDto newUser, Long id) {
+    public void updateUser(UserDto newUser, Long id) {
 
         userRepository.findById(id).map(user -> {
             user.setFirstName(newUser.getFirstName());

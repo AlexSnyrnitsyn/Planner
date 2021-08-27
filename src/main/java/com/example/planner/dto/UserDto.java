@@ -1,6 +1,6 @@
 package com.example.planner.dto;
 
-public class UserCreateDto {
+public class UserDto {
 
     private Long id;
     private String firstName;
@@ -8,7 +8,7 @@ public class UserCreateDto {
     private String login;
 
 
-    public UserCreateDto(Long id, String firstName, String lastName, String login) {
+    public UserDto(Long id, String firstName, String lastName, String login) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

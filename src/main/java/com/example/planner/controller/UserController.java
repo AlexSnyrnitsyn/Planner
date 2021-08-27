@@ -1,12 +1,10 @@
 package com.example.planner.controller;
 
-import com.example.planner.dto.UserCreateDto;
+import com.example.planner.dto.UserDto;
 import com.example.planner.model.User;
 import com.example.planner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,41 +21,29 @@ public class UserController {
 
         List<User> users = this.userService.getAllUsers();
 
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping
-    public ResponseEntity<UserCreateDto> creatUser(@RequestBody UserCreateDto user){
-
-        if(user == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<UserDto> creatUser(@RequestBody UserDto user){
 
         this.userService.createUser(user);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return ResponseEntity.ok(user);
     }
 
 
     @PutMapping("{id}")
-    public ResponseEntity<UserCreateDto> creatUser(@RequestBody UserCreateDto newUser, @PathVariable Long id){
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @PathVariable Long id){
 
-        if(newUser == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        this.userService.updateUser(newUser, id);
-        return new ResponseEntity<>(newUser, HttpStatus.OK);
+        this.userService.updateUser(user, id);
+        return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<UserCreateDto> deleteUser(@PathVariable Long id){
-        User user = this.userService.getById(id);
-
-        if(user == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<User> deleteUser(@PathVariable Long id){
+        User user = userService.getById(id);
 
         this.userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(user);
     }
 }
