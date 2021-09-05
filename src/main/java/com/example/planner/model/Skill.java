@@ -4,6 +4,7 @@ package com.example.planner.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,4 +35,8 @@ public class Skill {
 
     @Column(name = "fifth_Grade")
     private String fifthGrade;
+
+    @OneToMany(mappedBy = "skill")
+    private List<UserSkill> userSkills;
+
 }
