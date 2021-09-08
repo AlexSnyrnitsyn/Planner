@@ -1,15 +1,18 @@
 package com.example.planner.model;
 
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "user_skill", schema = "public")
-public class UserSkill {
+public class UserSkill implements Serializable {
 
     @Id
     @Column(name = "user_id")

@@ -1,14 +1,17 @@
 package com.example.planner.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "position", schema = "public")
-@Data
-public class Position {
+@Getter
+@Setter
+public class Position implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
