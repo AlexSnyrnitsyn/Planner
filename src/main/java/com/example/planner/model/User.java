@@ -3,13 +3,17 @@ package com.example.planner.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
 @Table(name = "user", schema = "public")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +30,16 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserSkill> userSkills;
+
+    @ManyToOne
+    @JoinColumn(name = "position_id")
+    private Position userPosition;
+
+    @ManyToOne
+    @JoinColumn(name = "subdivision_id")
+    private Subdivision userSubdivision;
 
 }
