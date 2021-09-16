@@ -1,6 +1,9 @@
 package com.example.planner.controller;
 
 import com.example.planner.dto.UserDto;
+import com.example.planner.error.ServiceException;
+import com.example.planner.model.Position;
+import com.example.planner.model.Subdivision;
 import com.example.planner.model.User;
 import com.example.planner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +28,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> creatUser(@RequestBody UserDto user){
+    public ResponseEntity<UserDto> creatUser(@RequestBody UserDto user) throws ServiceException {
 
         userService.createUser(user);
         return ResponseEntity.ok(user);
     }
 
-
     @PutMapping("{id}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @PathVariable Long id){
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @PathVariable Long id) throws ServiceException{
 
         userService.updateUser(user, id);
+        userService.updatePosition(id, user.getPositionId());
+        userService.updateSubdivision(id, user.getSubdivisionId());
         return ResponseEntity.ok(user);
     }
 

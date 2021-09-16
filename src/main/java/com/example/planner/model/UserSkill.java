@@ -15,6 +15,10 @@ import java.io.Serializable;
 public class UserSkill implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Id
     @Column(name = "user_id")
     private Long userId;
 
