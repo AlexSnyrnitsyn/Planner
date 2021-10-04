@@ -2,12 +2,11 @@ package com.example.planner.enums;
 
 public enum  ResponseCode {
 
-    WRONG_USER("Ползователь не найден"),
-    WRONG_SKILL("Навык не найден"),
-    WRONG_POSITION("Позиция не найдена"),
-    WRONG_SUBDIVISION("Подразделение не найдено"),
-    WRONG_USER_SKILL("Связка не найдена");
-
+    USER_NOT_FOUND("Ползователь не найден"),
+    SKILL_NOT_FOUND("Навык не найден"),
+    POSITION_NOT_FOUND("Позиция не найдена"),
+    SUBDIVISION_NOT_FOUND("Подразделение не найдено"),
+    USER_SKILL_NOT_FOUND("Связка не найдена");
 
 
     private String message;

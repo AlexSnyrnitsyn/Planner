@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class UserSkillDto {
 
+    private Long id;
     private Long userId;
     private Long skillId;
     private int grade;

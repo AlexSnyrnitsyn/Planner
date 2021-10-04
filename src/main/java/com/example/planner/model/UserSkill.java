@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
 @Getter
 @Setter
@@ -15,16 +14,8 @@ import java.io.Serializable;
 public class UserSkill implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Id
-    @Column(name = "user_id")
-    private Long userId;
-
-    @Id
-    @Column(name = "skill_id")
-    private Long skillId;
 
     @Column(name = "grade")
     private int grade;

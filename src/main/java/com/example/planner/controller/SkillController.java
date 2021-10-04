@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/skill")
 public class SkillController {
@@ -17,10 +19,18 @@ public class SkillController {
     @Autowired
     private SkillService skillService;
 
+    @GetMapping
+    public ResponseEntity<List<SkillDto>> getAllUsers(){
+
+        List<SkillDto> skills = skillService.getAllSkill();
+
+        return ResponseEntity.ok(skills);
+    }
+
     @PostMapping
     public ResponseEntity<SkillDto> creatSkill(@RequestBody SkillDto skill){
 
-        skillService.addSkill(skill);
+        skillService.createSkill(skill);
         return ResponseEntity.ok(skill);
     }
 
@@ -32,12 +42,10 @@ public class SkillController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Skill> deleteUser(@PathVariable Long id){
+    public ResponseEntity<Skill> deleteSkill(@PathVariable Long id){
         Skill skill = skillService.getSkillById(id);
 
         skillService.deleteSkill(id);
         return ResponseEntity.ok(skill);
     }
-
-
 }

@@ -1,7 +1,5 @@
 package com.example.planner.dto;
 
-import com.example.planner.model.Position;
-import com.example.planner.model.Subdivision;
 import lombok.*;
 
 @Setter

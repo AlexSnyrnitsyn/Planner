@@ -2,16 +2,15 @@ package com.example.planner.error;
 
 import com.example.planner.enums.ResponseCode;
 
-public class ServiceException extends Exception {
+public class EntityNotFoundException extends RuntimeException {
 
     private ResponseCode responseCode;
 
-    public ServiceException(ResponseCode responseCode){
+    public EntityNotFoundException(ResponseCode responseCode){
         this.responseCode = responseCode;
     }
 
     public ResponseCode getResponseCode(){
         return responseCode;
     }
-
 }

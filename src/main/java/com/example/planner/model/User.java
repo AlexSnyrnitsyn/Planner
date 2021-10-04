@@ -6,17 +6,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-
 @Entity
 @Table(name = "user", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
 public class User implements Serializable {
-
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "first_name")
