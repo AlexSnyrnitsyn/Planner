@@ -1,8 +1,6 @@
 package com.example.planner.mapper;
 
-import com.example.planner.dto.SkillDto;
 import com.example.planner.dto.UserSkillDto;
-import com.example.planner.model.Skill;
 import com.example.planner.model.UserSkill;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

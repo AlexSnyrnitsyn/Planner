@@ -15,13 +15,11 @@ public interface UserMapper {
         UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
         User userDtoToUser(UserDto userDto);
 
-//        @Mappings({
-//        @Mapping(target = "password", ignore = true),
-//        @Mapping(source = "positionId", target = "user.userPosition.id"),
-//        @Mapping(source = "subdivisionId", target = "user.userSubdivision.id")
-//        })
-
-        @Mapping(target = "password", ignore = true)
+        @Mappings({
+        @Mapping(target = "password", ignore = true),
+        @Mapping(source = "positionId", target = "user.userPosition.id"),
+        @Mapping(source = "subdivisionId", target = "user.userSubdivision.id")
+        })
         List<UserDto> allUsersToUserDto(List<User> user);
         
     }
