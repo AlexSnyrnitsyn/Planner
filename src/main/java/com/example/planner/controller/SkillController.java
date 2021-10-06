@@ -35,10 +35,10 @@ public class SkillController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<SkillDto> updateSkill(@RequestBody SkillDto skill, @PathVariable Long id){
+    public ResponseEntity.BodyBuilder updateSkill(@RequestBody SkillDto skill, @PathVariable Long id){
 
         skillService.updateSkill(skill, id);
-        return ResponseEntity.ok(skill);
+        return ResponseEntity.ok();
     }
 
     @DeleteMapping("{id}")
