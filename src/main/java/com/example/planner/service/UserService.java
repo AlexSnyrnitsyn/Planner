@@ -17,4 +17,8 @@ public interface UserService {
 
     void deleteUser(Long id);
 
+    void updatePosition(Long userId, Long positionId);
+
+    void updateSubdivision(Long userId, Long subdivisionId);
+
 }

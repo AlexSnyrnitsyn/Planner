@@ -127,6 +127,9 @@
                             <version>1.4.2.Final</version>
                         </path>
                     </annotationProcessorPaths>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
