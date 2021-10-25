@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus( HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Удалить пользователя")
     public void deleteUser(@ApiParam("userId") @PathVariable Long id){
 

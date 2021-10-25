@@ -9,12 +9,16 @@ import com.example.planner.repository.PositionRepository;
 import com.example.planner.repository.SubdivisionRepository;
 import com.example.planner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
@@ -40,6 +44,8 @@ public class UserServiceImpl implements UserService {
             if(subdivision == null) {
                 throw new EntityNotFoundException(ResponseCode.SUBDIVISION_NOT_FOUND);
         }
+
+        user.setRole(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setUserPosition(position);
         user.setUserSubdivision(subdivision);
         userRepository.save(user);
@@ -91,5 +97,16 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getAllUsers() {
 
         return UserMapper.INSTANCE.allUsersToUserDto(userRepository.findAll());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = userRepository.findByLogin(login);
+
+        if (user == null){
+            throw new UsernameNotFoundException("User not found");
+        }
+
+        return user;
     }
 }
