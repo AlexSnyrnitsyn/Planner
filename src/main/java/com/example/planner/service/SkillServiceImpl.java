@@ -1,14 +1,9 @@
 package com.example.planner.service;
 
 import com.example.planner.dto.SkillDto;
-import com.example.planner.dto.UserDto;
-import com.example.planner.enums.ResponseCode;
-import com.example.planner.error.EntityNotFoundException;
 import com.example.planner.mapper.SkillMapper;
-import com.example.planner.mapper.UserMapper;
 import com.example.planner.model.Skill;
 import com.example.planner.repository.SkillRepository;
-import com.example.planner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +12,12 @@ import java.util.List;
 @Service
 public class SkillServiceImpl implements SkillService {
 
+    private final SkillRepository skillRepository;
+
     @Autowired
-    SkillRepository skillRepository;
+    public SkillServiceImpl(SkillRepository skillRepository) {
+        this.skillRepository = skillRepository;
+    }
 
     @Override
     public List<SkillDto> getAllSkill() {
@@ -57,4 +56,5 @@ public class SkillServiceImpl implements SkillService {
             return skillRepository.save(skill);
         });
     }
+    
 }

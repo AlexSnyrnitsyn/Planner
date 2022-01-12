@@ -2,7 +2,7 @@ package com.example.planner.configuration;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class PasswordEnconderTest implements PasswordEncoder {
+public class PasswordEncoderTest implements PasswordEncoder {
 
     @Override
     public String encode(CharSequence charSequence) {

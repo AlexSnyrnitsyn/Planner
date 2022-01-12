@@ -8,6 +8,7 @@ import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface UserMapper {
@@ -21,6 +22,8 @@ public interface UserMapper {
         @Mapping(source = "subdivisionId", target = "user.userSubdivision.id")
         })
         List<UserDto> allUsersToUserDto(List<User> user);
+
+        Set<UserDto> allUsersToSetUserDto(Set<User> user);
         
     }
 
