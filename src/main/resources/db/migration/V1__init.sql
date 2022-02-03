@@ -1,3 +1,23 @@
+create table "subdivision"
+(
+"id" BigInt not null,
+"subdivision_name" VarChar(255) not null,
+constraint "subdivision_Pkey" primary key ("id")
+);
+insert into "subdivision" values (1, 'отдел разработки');
+insert into "subdivision" values (2, 'отдел тестирования');
+insert into "subdivision" values (3, 'отдел аналитики');
+
+create table "position"
+(
+"id" BigInt not null,
+"position_name" VarChar(255) not null,
+constraint "position_Pkey" primary key ("id")
+);
+insert into "position" values (1, 'джуниор');
+insert into "position" values (2, 'мидл');
+insert into "position" values (3, 'сеньор');
+
 create table "user"
 (
 "id" BigInt not null,
@@ -46,22 +66,3 @@ constraint "user_skill_user_fkey" foreign key ("user_id") references "user" ("id
 constraint "user_skill_skill_fkey" foreign key ("skill_id") references "skill" ("id")
 );
 
-create table "subdivision"
-(
-"id" BigInt not null,
-"subdivision_name" VarChar(255) not null,
-constraint "subdivision_Pkey" primary key ("id")
-);
-insert into "subdivision" values (1, 'отдел разработки');
-insert into "subdivision" values (2, 'отдел тестирования');
-insert into "subdivision" values (3, 'отдел аналитики');
-
-create table "position"
-(
-"id" BigInt not null,
-"position_name" VarChar(255) not null,
-constraint "position_Pkey" primary key ("id")
-);
-insert into "position" values (1, 'джуниор');
-insert into "position" values (2, 'мидл');
-insert into "position" values (3, 'сеньор');

@@ -16,16 +16,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private final UserRepository userRepository;
+    private final PositionRepository positionRepository;
+    private final SubdivisionRepository subdivisionRepository;
+
     @Autowired
-    UserRepository userRepository;
-    @Autowired
-    PositionRepository positionRepository;
-    @Autowired
-    SubdivisionRepository subdivisionRepository;
+    public UserServiceImpl(UserRepository userRepository, PositionRepository positionRepository, SubdivisionRepository subdivisionRepository) {
+        this.userRepository = userRepository;
+        this.positionRepository = positionRepository;
+        this.subdivisionRepository = subdivisionRepository;
+    }
 
     @Override
     public User getById(Long id) {
@@ -36,14 +41,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void createUser(UserDto newUser) {
 
         User user = UserMapper.INSTANCE.userDtoToUser(newUser);
-        Position position = positionRepository.getById(newUser.getPositionId());
-            if(position == null) {
-                throw new EntityNotFoundException(ResponseCode.POSITION_NOT_FOUND);
-        }
-        Subdivision subdivision = subdivisionRepository.getById(newUser.getSubdivisionId());
-            if(subdivision == null) {
-                throw new EntityNotFoundException(ResponseCode.SUBDIVISION_NOT_FOUND);
-        }
+        Position position = positionRepository.findById(newUser.getPositionId()).orElseThrow(()-> new EntityNotFoundException(ResponseCode.POSITION_NOT_FOUND));
+
+        Subdivision subdivision = subdivisionRepository.findById(newUser.getSubdivisionId()).orElseThrow(()-> new EntityNotFoundException(ResponseCode.SUBDIVISION_NOT_FOUND));
 
         user.setRole(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setUserPosition(position);
@@ -71,10 +71,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void updatePosition(Long userId, Long positionId) {
 
         User user = userRepository.getById(userId);
-        Position position = positionRepository.getById(positionId);
-        if(position == null) {
-            throw new EntityNotFoundException(ResponseCode.POSITION_NOT_FOUND);
-        }
+        Position position = positionRepository.findById(positionId).orElseThrow(()-> new EntityNotFoundException(ResponseCode.POSITION_NOT_FOUND));
 
         user.setUserPosition(position);
         userRepository.save(user);
@@ -84,10 +81,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void updateSubdivision(Long userId, Long subdivisionId) {
 
         User user = userRepository.getById(userId);
-        Subdivision subdivision = subdivisionRepository.getById(subdivisionId);
-        if(subdivision == null) {
-            throw new EntityNotFoundException(ResponseCode.SUBDIVISION_NOT_FOUND);
-        }
+        Subdivision subdivision = subdivisionRepository.findById(subdivisionId).orElseThrow(()-> new EntityNotFoundException(ResponseCode.SUBDIVISION_NOT_FOUND));
 
         user.setUserSubdivision(subdivision);
         userRepository.save(user);

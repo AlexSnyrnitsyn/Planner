@@ -1,6 +1,7 @@
 package com.example.planner.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,7 @@ public class UserSkill implements Serializable {
     @Column(name = "grade")
     private int grade;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -1,5 +1,6 @@
 package com.example.planner.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,6 +35,12 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<UserSkill> userSkills;
+
+//    @OneToMany(mappedBy = "user")
+//    private List<ProjectUser> projectUser;
+
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private List<Project> projects;
 
     @ManyToOne
     @JoinColumn(name = "position_id")
@@ -80,4 +87,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
