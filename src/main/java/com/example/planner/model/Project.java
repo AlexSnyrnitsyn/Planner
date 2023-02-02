@@ -27,9 +27,6 @@ public class Project {
     @Column(name = "complexity_project")
     private String complexityProject;
 
-//    @OneToMany(mappedBy = "project")
-//    private List<ProjectUser> projectUser;
-
     @ManyToMany
     @JoinTable(name = "project_user", joinColumns = @JoinColumn(name = "project_id"),
     inverseJoinColumns = @JoinColumn(name = "user_id"))

@@ -36,9 +36,6 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<UserSkill> userSkills;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<ProjectUser> projectUser;
-
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Project> projects;
 
